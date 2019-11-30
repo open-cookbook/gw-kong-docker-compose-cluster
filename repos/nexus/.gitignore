@@ -1,0 +1,12 @@
+# 数据目录
+
+# DATA-DIR-BEGIN
+data
+
+../../../../log/nexus
+
+# DATA-DIR-END
+
+
+# 生产配置
+*.prod.yml
