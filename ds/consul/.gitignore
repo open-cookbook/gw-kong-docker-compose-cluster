@@ -1,0 +1,17 @@
+# 数据目录
+
+# DATA-DIR-BEGIN
+data
+data/node1
+data/node2
+data/node3
+
+../../../log/consul/consul-01
+../../../log/consul/consul-02
+../../../log/consul/consul-03
+
+# DATA-DIR-END
+
+
+# 生产配置
+*.prod.yml
