@@ -8,7 +8,7 @@
 
 DATA_SUF       := $(shell date +"%Y.%m.%d.%H.%M.%S")
 
-CONSUL	:= /data/consul
+CONSUL	:= /usr/local/bin/consul
 AGENT		:= $(CONSUL) agent
 
 
@@ -16,11 +16,11 @@ AGENT		:= $(CONSUL) agent
 # ####################################
 # Dashboard AREA
 # ####################################
-build:
+start: start-with-conf
 
-query: query-node-by-dns query-svc-by-dns
+query: query-node-by-dns query-svc-by-dns query-svc-by-api
 
-status:
+status: status-members status-by-http
 
 
 # ####################################
@@ -28,8 +28,8 @@ status:
 # ####################################
 start-quick:
 	$(AGENT) -dev
-start-dev:
-	$(AGENT) -config-dir=$(CURDIR)/conf
+start-with-conf:
+	$(AGENT) -dev  -config-dir=$(CURDIR)/conf
 
 
 # ####################################
