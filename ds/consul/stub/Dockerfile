@@ -1,3 +1,5 @@
+# ARG CONSUL_VER=1.6.2
+
 # IMG
 FROM centos:7
 
@@ -10,13 +12,15 @@ MAINTAINER boxu@yvhai.com
 RUN date \
     && yum update -y \
     && ls -lhrt /etc/yum.repos.d/ \
-    && yum install -y vim rsync screen sysstat \
-    && yum install -y tree net-snmp-utils net-tools bind-utils iputils telnet lsof \
+    && yum install -y sudo make which \
+    && yum install -y vim rsync screen sysstat unzip \
     && yum install -y openssh-server openssh-clients \
-    && yum install -y sudo make which yum-utils \
+    && yum install -y tree net-snmp-utils net-tools bind-utils iputils telnet lsof yum-utils \
     && yum clean all && rm -rf /var/cache/yum
 
 # Install Spec
+# ADD ./stub/downloads/consul_${CONSUL_VER}_linux_amd64.zip /usr/local/bin/
+ADD ./stub/downloads/consul_1.6.2_linux_amd64.tar.bz2 /usr/local/bin/
 
 # Config
 RUN pwd \
@@ -33,10 +37,10 @@ RUN groupadd -g 1000 foobar \
 
 
 # 接口
-WORKDIR /project
+WORKDIR /demo
 # USER foobar
 EXPOSE 22
-VOLUME [ "/project", "/data"]
+VOLUME [ "/demo", "/project", "/data"]
 
 
 # clean

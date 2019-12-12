@@ -52,7 +52,7 @@ init-dir:
 	# 给集群配置文件加上读权限，否则会因用户id不同，导致配置读取不生效
 	find conf -name "*.cnf" -exec chmod +r {} \;
 	# log目录可写
-	chmod o+w ../../../log/$(PROJ_NAME)
+	chmod o+w ../../../../log/$(PROJ_NAME)
 
 download:
 	for x in `cat stub/downloads/url.lst | grep -v "^#"`; do \
@@ -63,5 +63,8 @@ download:
 # ####################################
 # Utils AREA
 # ####################################
+rm-img:
+	make --no-print-directory -C . stop
+	docker rmi $(CONSUL_IMG_TAG)
 clean:
 	rm -rvf log/* *.bak

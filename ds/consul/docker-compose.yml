@@ -18,7 +18,7 @@
 # 文件映射
 # ####################################
 
-version: '2'
+version: '3'
 services:
   consul-01:
     privileged: true
@@ -27,11 +27,40 @@ services:
     build:
       context: ${BUILD_CONTEXT_DIR}
       dockerfile: ./stub/Dockerfile
+      # args:
+      #   CONSUL_VER: ${CONSUL_VER}
     image: ${CONSUL_IMG_TAG}
     hostname: consul-01
     container_name: consul-01
     volumes:
       - ./data/node1:/data
-      - ../../..:/project
+      - ./demo:/demo
+      - ../../../..:/project
     ports:
-      - "52001:22"
+      - "52201:22"
+
+  consul-02:
+    privileged: true
+    restart: always
+    image: ${CONSUL_IMG_TAG}
+    hostname: consul-02
+    container_name: consul-02
+    volumes:
+      - ./data/node2:/data
+      - ./demo:/demo
+      - ../../../..:/project
+    ports:
+      - "52202:22"
+
+  consul-03:
+    privileged: true
+    restart: always
+    image: ${CONSUL_IMG_TAG}
+    hostname: consul-03
+    container_name: consul-03
+    volumes:
+      - ./data/node3:/data
+      - ./demo:/demo
+      - ../../../..:/project
+    ports:
+      - "52203:22"

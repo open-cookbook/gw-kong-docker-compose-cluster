@@ -6,12 +6,16 @@ data/node1
 data/node2
 data/node3
 
-../../../log/consul/consul-01
-../../../log/consul/consul-02
-../../../log/consul/consul-03
+../../../../log/consul/consul-01
+../../../../log/consul/consul-02
+../../../../log/consul/consul-03
 
 # DATA-DIR-END
 
 
 # 生产配置
 *.prod.yml
+
+# 生成/下载
+stub/downloads/*.zip
+stub/downloads/*.tar*
