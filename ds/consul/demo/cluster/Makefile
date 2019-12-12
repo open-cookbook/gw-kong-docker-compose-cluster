@@ -41,16 +41,29 @@ start-bg:
 # ####################################
 # Cluster AREA
 # ####################################
+start-server-fg:
+	$(AGENT) -server -bootstrap-expect=1  \
+		-data-dir=/data/$(NODE_NAME) \
+		-node=$(NODE_NAME) \
+		-enable-script-checks=true -config-dir=$(CURDIR)/conf \
+		-client 0.0.0.0 -ui
+
+start-node-fg:
+	$(AGENT) -data-dir=/data/$(NODE_NAME) \
+		-node=$(NODE_NAME) \
+		-enable-script-checks=true -config-dir=$(CURDIR)/conf \
+		-ui
+
 start-server:
 	nohup $(AGENT) -server -bootstrap-expect=1  \
-		-data-dir=/tmp/consul \
+		-data-dir=/data/$(NODE_NAME) \
 		-node=$(NODE_NAME) \
 		-enable-script-checks=true -config-dir=$(CURDIR)/conf \
 		-client 0.0.0.0 -ui \
 		>/var/log/consul/$(NODE_NAME).log 2>&1 &
 
 start-node:
-	nohup $(AGENT) -data-dir=/tmp/consul \
+	nohup $(AGENT) -data-dir=/data/$(NODE_NAME) \
 		-node=$(NODE_NAME) \
 		-enable-script-checks=true -config-dir=$(CURDIR)/conf \
 		-ui \

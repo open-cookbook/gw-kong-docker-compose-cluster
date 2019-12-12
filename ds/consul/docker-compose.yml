@@ -33,7 +33,8 @@ services:
     hostname: consul-01
     container_name: consul-01
     volumes:
-      - ./data/node1:/data
+      - ./data:/data
+      - ./conf/sv/consul-server.ini:/etc/supervisord.d/consul-server.ini
       - ./demo:/demo
       - ../../../../log/consul/consul-01:/var/log/consul
       - ../../../..:/project
@@ -47,7 +48,8 @@ services:
     hostname: consul-02
     container_name: consul-02
     volumes:
-      - ./data/node2:/data
+      - ./data:/data
+      - ./conf/sv/consul-node.ini:/etc/supervisord.d/consul-node.ini
       - ./demo:/demo
       - ../../../../log/consul/consul-02:/var/log/consul
       - ../../../..:/project
@@ -61,7 +63,8 @@ services:
     hostname: consul-03
     container_name: consul-03
     volumes:
-      - ./data/node3:/data
+      - ./data:/data
+      - ./conf/sv/consul-node.ini:/etc/supervisord.d/consul-node.ini
       - ./demo:/demo
       - ../../../../log/consul/consul-03:/var/log/consul
       - ../../../..:/project

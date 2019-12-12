@@ -60,7 +60,7 @@ init-dir:
 	find conf -name "*.cnf" -exec chmod +r {} \;
 	# log目录可写
 	chmod o+w ../../../../log/$(PROJ_NAME)
-	ln -s ../../../../log/$(PROJ_NAME) log
+	[ -L log ] || ln -s ../../../../log/$(PROJ_NAME) log
 
 
 download:

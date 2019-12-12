@@ -22,6 +22,12 @@ RUN date \
 # ADD ./stub/downloads/consul_${CONSUL_VER}_linux_amd64.zip /usr/local/bin/
 ADD ./stub/downloads/consul_1.6.2_linux_amd64.tar.bz2 /usr/local/bin/
 
+# Install Python and supervisor
+RUN pwd \
+    && yum install -y epel-release \
+    && yum install -y supervisor \
+    && systemctl enable supervisord
+
 # Config
 RUN pwd \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
