@@ -19,3 +19,6 @@ data/node3
 # 生成/下载
 stub/downloads/*.zip
 stub/downloads/*.tar*
+
+# 快速通道
+log

@@ -35,6 +35,7 @@ services:
     volumes:
       - ./data/node1:/data
       - ./demo:/demo
+      - ../../../../log/consul/consul-01:/var/log/consul
       - ../../../..:/project
     ports:
       - "52201:22"
@@ -48,6 +49,7 @@ services:
     volumes:
       - ./data/node2:/data
       - ./demo:/demo
+      - ../../../../log/consul/consul-02:/var/log/consul
       - ../../../..:/project
     ports:
       - "52202:22"
@@ -61,6 +63,7 @@ services:
     volumes:
       - ./data/node3:/data
       - ./demo:/demo
+      - ../../../../log/consul/consul-03:/var/log/consul
       - ../../../..:/project
     ports:
       - "52203:22"

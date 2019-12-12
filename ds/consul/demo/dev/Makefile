@@ -30,6 +30,8 @@ start-quick:
 	$(AGENT) -dev
 start-with-conf:
 	$(AGENT) -dev  -config-dir=$(CURDIR)/conf
+start-bg:
+	nohup $(AGENT) -dev -config-dir=$(CURDIR)/conf >/var/log/consul/consul.log 2>&1 &
 
 
 # ####################################
