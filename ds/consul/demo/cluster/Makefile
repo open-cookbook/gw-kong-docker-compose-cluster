@@ -1,6 +1,6 @@
 # ####################################
 # @file: Makefile
-# @name: Consul Dev Demo
+# @name: Consul Cluster Demo
 # @date: 2019-12-12 16:22:21
 # @tver: 20191129
 # ####################################
@@ -11,6 +11,8 @@ DATA_SUF       := $(shell date +"%Y.%m.%d.%H.%M.%S")
 CONSUL	:= /usr/local/bin/consul
 AGENT		:= $(CONSUL) agent
 
+MASTER_NAME := consul-01
+NODE_NAME 	:= $(shell hostname -s)
 
 
 # ####################################
@@ -34,6 +36,28 @@ start-with-conf:
 	$(AGENT) -dev  -config-dir=$(CURDIR)/conf
 start-bg:
 	nohup $(AGENT) -dev -config-dir=$(CURDIR)/conf >/var/log/consul/consul.log 2>&1 &
+
+
+# ####################################
+# Cluster AREA
+# ####################################
+start-server:
+	nohup $(AGENT) -server -bootstrap-expect=1  \
+		-data-dir=/tmp/consul \
+		-node=$(NODE_NAME) \
+		-enable-script-checks=true -config-dir=$(CURDIR)/conf \
+		-client 0.0.0.0 -ui \
+		>/var/log/consul/$(NODE_NAME).log 2>&1 &
+
+start-node:
+	nohup $(AGENT) -data-dir=/tmp/consul \
+		-node=$(NODE_NAME) \
+		-enable-script-checks=true -config-dir=$(CURDIR)/conf \
+		-ui \
+		>/var/log/consul/$(NODE_NAME).log 2>&1 &
+
+join-cluster:
+	$(CONSUL) join $(MASTER_NAME)
 
 
 # ####################################

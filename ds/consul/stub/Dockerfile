@@ -12,7 +12,7 @@ MAINTAINER boxu@yvhai.com
 RUN date \
     && yum update -y \
     && ls -lhrt /etc/yum.repos.d/ \
-    && yum install -y sudo make which \
+    && yum install -y sudo make which psmisc \
     && yum install -y vim rsync screen sysstat unzip \
     && yum install -y openssh-server openssh-clients \
     && yum install -y tree net-snmp-utils net-tools bind-utils iputils telnet lsof yum-utils \

@@ -14,6 +14,8 @@ include ./.env
 
 PROJ_NAME := $(shell basename $(CURDIR))
 
+CMD := bash
+
 
 # ####################################
 # Dashboard AREA
@@ -25,9 +27,14 @@ stop:
 config:
 	$(DC) config
 
-sh:
-	$(DK_EXEC) consul-01 bash
 bash: sh
+sh: sh1
+sh1:
+	$(DK_EXEC) consul-01 $(CMD)
+sh2:
+	$(DK_EXEC) consul-02 $(CMD)
+sh3:
+	$(DK_EXEC) consul-03 $(CMD)
 
 rebuild-then-start: stop init-dir
 	$(DK) images | grep -q $(OS_IMG_TAG) && $(DK) rmi $(OS_IMG_TAG) || true
