@@ -43,8 +43,12 @@ rebuild-then-start: stop init-dir
 
 
 # ####################################
-# Cluster AREA
+# Web Dashboard AREA
 # ####################################
+web:
+	[ -d build ] || mkdir build 
+	git clone git@github.com:PGBI/kong-dashboard.git build/kong-dashboard
+	git clone https://github.com/pantsel/konga.git build/konga
 
 
 # ####################################

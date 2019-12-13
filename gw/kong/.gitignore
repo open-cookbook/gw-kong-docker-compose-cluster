@@ -17,6 +17,8 @@ data
 *.prod.yml
 
 # 生成/下载
+build
+
 
 # 快速通道
 log
