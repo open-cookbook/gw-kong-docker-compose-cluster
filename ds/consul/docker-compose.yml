@@ -1,0 +1,74 @@
+---
+# Name: Consul
+# Version: 1.6
+# FileVersion: 20191212
+# Ref: 
+#   - https://www.consul.io/downloads.html
+
+# Dockerfile
+# 
+
+
+# ####################################
+# 环境变量
+# ####################################
+
+
+# ####################################
+# 文件映射
+# ####################################
+
+version: '3'
+services:
+  consul-01:
+    privileged: true
+    # command: /bin/bash
+    restart: always
+    build:
+      context: ${BUILD_CONTEXT_DIR}
+      dockerfile: ./stub/Dockerfile
+      # args:
+      #   CONSUL_VER: ${CONSUL_VER}
+    image: ${CONSUL_IMG_TAG}
+    hostname: consul-01
+    container_name: consul-01
+    volumes:
+      - ./data:/data
+      - ./conf/sv/consul-server.ini:/etc/supervisord.d/consul-server.ini
+      - ./demo:/demo
+      - ../../../../log/consul/consul-01:/var/log/consul
+      - ../../../..:/project
+    ports:
+      - "52201:22"
+      - "8500:8500"
+
+  consul-02:
+    privileged: true
+    restart: always
+    image: ${CONSUL_IMG_TAG}
+    hostname: consul-02
+    container_name: consul-02
+    volumes:
+      - ./data:/data
+      - ./conf/sv/consul-node.ini:/etc/supervisord.d/consul-node.ini
+      - ./demo:/demo
+      - ../../../../log/consul/consul-02:/var/log/consul
+      - ../../../..:/project
+    ports:
+      - "52202:22"
+
+  consul-03:
+    privileged: true
+    restart: always
+    image: ${CONSUL_IMG_TAG}
+    hostname: consul-03
+    container_name: consul-03
+    volumes:
+      - ./data:/data
+      - ./conf/sv/consul-node.ini:/etc/supervisord.d/consul-node.ini
+      - ./demo:/demo
+      - ../../../../log/consul/consul-03:/var/log/consul
+      - ../../../..:/project
+    ports:
+      - "52203:22"
+
