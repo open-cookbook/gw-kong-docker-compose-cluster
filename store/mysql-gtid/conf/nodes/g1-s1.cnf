@@ -1,3 +1,0 @@
-[mysqld]
-server-id=101
-log-error=/var/log/mysql/mysql-error-101.log

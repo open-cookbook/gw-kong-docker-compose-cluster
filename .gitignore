@@ -6,9 +6,9 @@ data
 # data/node2
 # data/node3
 
-../../../../log/consul/consul-01
-../../../../log/consul/consul-02
-../../../../log/consul/consul-03
+../../../../log/kong/kong-01
+../../../../log/kong/kong-02
+../../../../log/kong/kong-03
 
 # DATA-DIR-END
 
@@ -17,8 +17,8 @@ data
 *.prod.yml
 
 # 生成/下载
-stub/downloads/*.zip
-stub/downloads/*.tar*
+build
+
 
 # 快速通道
 log

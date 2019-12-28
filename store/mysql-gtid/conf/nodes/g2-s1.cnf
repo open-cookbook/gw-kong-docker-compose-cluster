@@ -1,3 +1,0 @@
-[mysqld]
-server-id=201
-log-error=/var/log/mysql/mysql-error-201.log

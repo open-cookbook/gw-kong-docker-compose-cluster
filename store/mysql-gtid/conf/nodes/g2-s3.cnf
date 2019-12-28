@@ -1,3 +1,0 @@
-[mysqld]
-server-id=203
-log-error=/var/log/mysql/mysql-error-203.log

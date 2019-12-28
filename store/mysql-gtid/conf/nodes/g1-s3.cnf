@@ -1,3 +1,0 @@
-[mysqld]
-server-id=103
-log-error=/var/log/mysql/mysql-error-103.log
